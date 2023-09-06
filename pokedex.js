@@ -18,7 +18,6 @@ const url = "https://pokeapi.co/api/v2/pokemon/";
 fetch(url)
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
     fecthingForimages(data);
   });
 
@@ -29,10 +28,6 @@ function fecthingForimages(a) {
       .then((data) => pokemonCards([data]));
   }
 }
-
-// function pokemon(myObject) {
-//   console.log(myObject);
-// }
 
 function pokemonCards(object) {
   object.forEach((element) => {
@@ -53,33 +48,3 @@ function pokemonCards(object) {
     namePokemon.innerText = element.name;
   });
 }
-
-// async function getPokemon() {
-//   try {
-//     const url = "https://pokeapi.co/api/v2/pokemon-species/";
-//     const res = await fetch(url);
-//     const jsonRes = await res.json();
-//     return jsonRes;
-//   } catch (err) {
-//     console.log(err.toString());
-//   }
-// }
-
-// getPokemon().then((data) => {
-//   console.log(data.results);
-
-//   pokemonCards(data);
-// });
-
-// async function getPokemonImage() {
-//     try {
-
-//       const url = "https://pokeapi.co/api/v2/pokemon-species/";
-//       const res = await fetch(url);
-//       const jsonRes = await res.json();
-//       return jsonRes;
-//     } catch (err) {
-//       console.log(err.toString());
-//     }
-//   }
-//   getPokemonImage()
