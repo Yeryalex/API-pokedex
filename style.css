@@ -1,3 +1,15 @@
+body {
+  background-color: rgb(204, 237, 237);
+}
+
+header {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
 .imageCard {
   width: 300px;
   height: auto;
@@ -24,10 +36,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
-  margin: 0;
-  padding: 0;
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.div-supreme {
+  max-width: 1000px;
+  margin: auto;
+  padding: 10px;
 }

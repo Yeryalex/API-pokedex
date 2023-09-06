@@ -15,19 +15,22 @@ body.appendChild(divSupreme);
 
 const url = "https://pokeapi.co/api/v2/pokemon/";
 
-fetch(url)
-  .then((response) => response.json())
-  .then((data) => {
-    fecthingForimages(data);
-  });
+const numberOfPokemon = 21;
 
-function fecthingForimages(a) {
-  for (let i = 1; i <= a.results.length; i++) {
-    fetch(url + i)
-      .then((res) => res.json())
-      .then((data) => pokemonCards([data]));
-  }
+const fetchPromises = [];
+
+for (let i = 1; i <= numberOfPokemon; i++) {
+  fetchPromises.push(fetch(url + i).then((res) => res.json()));
 }
+
+Promise.all(fetchPromises)
+  .then((data) => {
+    data.sort((a, b) => a.id - b.id);
+    pokemonCards(data);
+  })
+  .catch((error) => {
+    console.error("Error fetching Pokémon data:", error);
+  });
 
 function pokemonCards(object) {
   object.forEach((element) => {
@@ -35,7 +38,7 @@ function pokemonCards(object) {
     divCard.classList.add("card");
     let imgCard = document.createElement("img");
     imgCard.classList.add("imageCard");
-    imgCard.src = element.sprites.other.home.front_default;
+    imgCard.src = element.sprites.other["official-artwork"].front_default;
     let divCardInfo = document.createElement("div");
     divCardInfo.classList.add("container");
 
