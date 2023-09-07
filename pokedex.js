@@ -15,17 +15,16 @@ body.appendChild(divSupreme);
 
 const url = "https://pokeapi.co/api/v2/pokemon/";
 
-const numberOfPokemon = 21;
+const numberOfPokemon = 210;
 
 const fetchPromises = [];
-
 for (let i = 1; i <= numberOfPokemon; i++) {
   fetchPromises.push(fetch(url + i).then((res) => res.json()));
 }
 
 Promise.all(fetchPromises)
   .then((data) => {
-    data.sort((a, b) => a.id - b.id);
+    // data.sort((a, b) => a.id - b.id);
     pokemonCards(data);
   })
   .catch((error) => {
@@ -47,7 +46,10 @@ function pokemonCards(object) {
     divMain.appendChild(divCard);
 
     let namePokemon = document.createElement("h4");
+    namePokemon.classList.add("name-pokemon");
     divCardInfo.appendChild(namePokemon);
-    namePokemon.innerText = element.name;
+    namePokemon.innerText =
+      element.name[0].toUpperCase() +
+      element.name.slice(1, element.name.length);
   });
 }

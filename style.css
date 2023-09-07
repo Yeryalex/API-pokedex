@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(204, 237, 237);
+  background-color: rgb(85, 137, 137);
 }
 
 header {
@@ -23,16 +23,20 @@ header {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 300px;
+  border-radius: 10px;
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6);
 }
 
 .container {
   padding: 2px 16px;
+  background-color: rgb(91, 186, 154);
+  border-radius: 0px 0px 10px 10px;
 }
 .div-container-cards {
+  max-width: 1000px;
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
@@ -42,4 +46,10 @@ header {
   max-width: 1000px;
   margin: auto;
   padding: 10px;
+}
+
+.name-pokemon {
+  text-align: center;
+  font-size: medium;
+  font-style: normal;
 }
