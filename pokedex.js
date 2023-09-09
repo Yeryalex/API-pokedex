@@ -6,10 +6,32 @@ let h1 = document.createElement("h1");
 h1.classList.add("tittle");
 let divMain = document.createElement("div");
 divMain.classList.add("div-container-cards");
+let searchPokemonContainer = document.createElement("div");
+searchPokemonContainer.classList.add("input-container");
+let inputSearch = document.createElement("input");
+inputSearch.classList.add("input-text");
+inputSearch.setAttribute("type", "text");
+inputSearch.setAttribute("placeholder", "Who`s that Pokemon?");
+let submitButton = document.createElement("input");
+submitButton.classList.add("submit-button");
+submitButton.setAttribute("type", "submit");
+let divUnderSearch = document.createElement("div");
+divUnderSearch.classList.add("under-search");
+
+searchPokemonContainer.appendChild(inputSearch);
+searchPokemonContainer.appendChild(submitButton);
+{
+  /* <div id="input-container">
+<input type="text" placeholder="who`s that pokemon" id="input-text">
+<input type="submit"  id="submit">
+</div> */
+}
 
 h1.innerText = "Pokédex";
 header.appendChild(h1);
 divSupreme.appendChild(header);
+divSupreme.appendChild(searchPokemonContainer);
+divSupreme.appendChild(divUnderSearch);
 divSupreme.appendChild(divMain);
 body.appendChild(divSupreme);
 
@@ -41,6 +63,56 @@ function pokemonCards(object) {
     let namePokemon = document.createElement("h4");
     namePokemon.classList.add("name-pokemon");
     divCardInfo.appendChild(namePokemon);
+    namePokemon.innerText =
+      element.name[0].toUpperCase() +
+      element.name.slice(1, element.name.length);
+  });
+}
+
+submitButton.addEventListener("click", namePokemon);
+
+function namePokemon(e) {
+  e.preventDefault();
+
+  let pokemonName = inputSearch.value.trim();
+  console.log(pokemonName);
+  if (pokemonName) {
+    divUnderSearch.textContent = "";
+    fetch(url + `${pokemonName}`)
+      .then((res) => res.json())
+      .then((data) => pokemonDescriptions([data]));
+    inputSearch.value = "";
+  } else {
+    divUnderSearch.textContent = "";
+    noRepeatPokemon();
+  }
+}
+
+function noRepeatPokemon() {
+  let infoNoPokemon = document.createElement("div");
+  let paragraph = document.createElement("p");
+  paragraph.innerText = "Please insert your pokemon`s name";
+  infoNoPokemon.appendChild(paragraph);
+  divUnderSearch.appendChild(infoNoPokemon);
+}
+
+function pokemonDescriptions(pokeNames) {
+  pokeNames.forEach((element) => {
+    let divDes = document.createElement("div");
+    divDes.classList.add("card-description");
+    let imgCardDes = document.createElement("img");
+    imgCardDes.classList.add("image-card-description");
+    imgCardDes.src = element.sprites.other["official-artwork"].front_default;
+    let divCardInfoDes = document.createElement("div");
+    divCardInfoDes.classList.add("containerDes");
+
+    divDes.appendChild(imgCardDes);
+    divDes.appendChild(divCardInfoDes);
+    divUnderSearch.appendChild(divDes);
+
+    let namePokemon = document.createElement("h4");
+    namePokemon.classList.add("name-pokemon-description");
+    divCardInfoDes.appendChild(namePokemon);
     namePokemon.innerText =
       element.name[0].toUpperCase() +
       element.name.slice(1, element.name.length);
