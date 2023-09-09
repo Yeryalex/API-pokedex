@@ -15,21 +15,14 @@ body.appendChild(divSupreme);
 
 const url = "https://pokeapi.co/api/v2/pokemon/";
 
-const numberOfPokemon = 210;
+for (let i = 1; i <= 21; i++) {
+  let randomNumber = Math.floor(Math.random() * 1000);
 
-const fetchPromises = [];
-for (let i = 1; i <= numberOfPokemon; i++) {
-  fetchPromises.push(fetch(url + i).then((res) => res.json()));
+  fetch(url + randomNumber)
+    .then((res) => res.json())
+    .then((data) => pokemonCards([data]))
+    .catch((err) => console.log(err));
 }
-
-Promise.all(fetchPromises)
-  .then((data) => {
-    // data.sort((a, b) => a.id - b.id);
-    pokemonCards(data);
-  })
-  .catch((error) => {
-    console.error("Error fetching Pokémon data:", error);
-  });
 
 function pokemonCards(object) {
   object.forEach((element) => {
