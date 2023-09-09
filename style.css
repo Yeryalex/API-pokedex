@@ -74,15 +74,16 @@ header {
 }
 
 .name-pokemon-description {
-  text-align: center;
-  background-color: rgb(149, 110, 53);
+  font-size: 30px;
+  padding-top: 8px;
+  margin: 0px;
 }
 
 .input-text {
   width: 100%;
   height: 40px;
   border-radius: 20px;
-  border: none;
+  border: 0px;
 }
 
 .submit-button {
@@ -95,4 +96,12 @@ header {
   display: flex;
   justify-content: center;
   margin: 10px 0px 100px 0px;
+}
+
+.containerDes {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(91, 186, 154);
+  border-radius: 0px 0px 10px 10px;
+  height: 50px;
 }
